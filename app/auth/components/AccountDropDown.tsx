@@ -1,4 +1,5 @@
-import React, { useState, useReducer } from "react"
+import React, { useState } from "react"
+import { Link } from "blitz"
 import Gravatar from "react-gravatar"
 type AccountDropDownProps = {
   onLogout: () => void
@@ -31,6 +32,14 @@ export const AccountDropDown = (props: AccountDropDownProps) => {
         <span className="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">
           {name}
         </span>
+        <Link href="/user/dashboard">
+          <a
+            href="/user/dashboard"
+            className="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"
+          >
+            Dashboard
+          </a>
+        </Link>
         <button
           className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"
           onClick={async () => {
