@@ -1,7 +1,11 @@
-import { Link, BlitzPage } from "blitz"
+import { Link, BlitzPage, useQuery, useSession } from "blitz"
 import Layout from "app/layouts/Layout"
+import getUser from "app/user/queries/getUser"
+import { useCurrentUser } from "app/hooks/useCurrentUser"
+import { Suspense } from "react"
 
 const Dashboard: BlitzPage = () => {
+  const [user] = useQuery(getUser, null)
   return (
     <div className="container mx-auto justify-center items-center">
       <nav className="mb-4 bg-white rounded-sm shadow flex justify-between">
@@ -43,11 +47,15 @@ const Dashboard: BlitzPage = () => {
           </Link>
         </div>
       </nav>
-      <div className="container mx-auto shadow rounded-lg p-8 bg-white">Dashboard</div>
+      <div className="container mx-auto shadow rounded-lg p-8 bg-white">Welcome {user?.name}</div>
     </div>
   )
 }
 
-Dashboard.getLayout = (page) => <Layout title="Dashboard">{page}</Layout>
+Dashboard.getLayout = (page) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Layout title="Dashboard">{page}</Layout>
+  </Suspense>
+)
 
 export default Dashboard
