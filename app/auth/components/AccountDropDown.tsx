@@ -3,7 +3,7 @@ import { Link } from "blitz"
 import Gravatar from "react-gravatar"
 type AccountDropDownProps = {
   onLogout: () => void
-  user: { name: string; email: string }
+  user: { name: string | null; email: string; id: number; role: string }
 }
 export const AccountDropDown = (props: AccountDropDownProps) => {
   const [isOpen, setIsOpen] = useState(false)

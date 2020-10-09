@@ -3,7 +3,7 @@ import Layout from "app/layouts/Layout"
 import { Head, Link, useRouter, useParam, BlitzPage } from "blitz"
 import createLesson from "app/admin/lessons/mutations/createLesson"
 import LessonForm from "app/admin/lessons/components/LessonForm"
-
+import { slugify } from "utils/slugify"
 const NewLessonPage: BlitzPage = () => {
   const router = useRouter()
   const courseId = useParam("courseId", "number")
@@ -21,7 +21,10 @@ const NewLessonPage: BlitzPage = () => {
           initialValues={{}}
           onSubmit={async () => {
             try {
-              const lesson = await createLesson({ data: { name: "MyName" }, courseId })
+              const lesson = await createLesson({
+                data: { title: "MyLesson", slug: `${slugify("MyLesson")}-${Date.now()}` },
+                courseId,
+              })
               alert("Success!" + JSON.stringify(lesson))
               router.push(
                 "/courses/[courseId]/lessons/[lessonId]",

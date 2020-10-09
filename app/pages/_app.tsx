@@ -2,7 +2,6 @@ import { AppProps, ErrorComponent } from "blitz"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
 import { queryCache } from "react-query"
 import LoginForm from "app/auth/components/LoginForm"
-import Layout from "../components/layout"
 import "app/styles/index.css"
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -17,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
         queryCache.resetErrorBoundaries()
       }}
     >
-      <Layout>{getLayout(<Component {...pageProps} />)}</Layout>
+      {getLayout(<Component {...pageProps} />)}
     </ErrorBoundary>
   )
 }
