@@ -7,9 +7,9 @@ import { UserNav } from "app/user/componenets/UserNav"
 
 const Dashboard: BlitzPage = () => {
   return (
-    <div className="container mx-auto justify-center items-center">
+    <div className="flex container mx-auto bg-gray-200 min-h-screen">
       <UserNav />
-      <div className="container mx-auto shadow rounded-lg p-8 bg-white">
+      <div className="w-full bg-white rounded-lg mx-auto my-8 px-10 py-8">
         <Suspense fallback={<div>Loading...</div>}>
           <UserGreeting />
         </Suspense>

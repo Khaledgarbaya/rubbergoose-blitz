@@ -13,7 +13,7 @@ export default async function getCourseForUser(
 
   const course = await db.course.findOne({
     where,
-    include: { CourseMembership: { where: { userId: ctx.session!.userId } } },
+    include: { CourseMembership: { where: { userId: ctx.session!.userId } }, lessons: true },
   })
 
   if (!course || course.CourseMembership.length === 0) throw new NotFoundError()

@@ -1,43 +1,64 @@
 import { Link } from "blitz"
 
 export const UserNav = () => (
-  <nav className="mb-4 bg-white rounded-sm shadow flex justify-between">
-    <div className="flex">
-      <Link href="/user/dashboard">
-        <a href="/user/dashboard" className="flex items-center px-2 text-sm">
-          <svg
-            className="h-4 w-4 mr-1 fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g data-name="Layer 2">
-              <g data-name="home">
-                <path d="M10 14h4v7h-4z" />
-                <path d="M20.42 10.18L12.71 2.3a1 1 0 00-1.42 0l-7.71 7.89A2 2 0 003 11.62V20a2 2 0 001.89 2H8v-9a1 1 0 011-1h6a1 1 0 011 1v9h3.11A2 2 0 0021 20v-8.38a2.07 2.07 0 00-.58-1.44z" />
-              </g>
-            </g>
-          </svg>
-          Home
-        </a>
-      </Link>
-      <Link href="/user/settings">
-        <a href="/user/settings" className="flex text-sm items-center p-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4 mr-1 fill-current"
-            viewBox="0 0 24 24"
-          >
-            <g data-name="Layer 2">
-              <g data-name="settings-2">
-                <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0" />
-                <circle cx="12" cy="12" r="1.5" />
-                <path d="M20.32 9.37h-1.09c-.14 0-.24-.11-.3-.26a.34.34 0 0 1 0-.37l.81-.74a1.63 1.63 0 0 0 .5-1.18 1.67 1.67 0 0 0-.5-1.19L18.4 4.26a1.67 1.67 0 0 0-2.37 0l-.77.74a.38.38 0 0 1-.41 0 .34.34 0 0 1-.22-.29V3.68A1.68 1.68 0 0 0 13 2h-1.94a1.69 1.69 0 0 0-1.69 1.68v1.09c0 .14-.11.24-.26.3a.34.34 0 0 1-.37 0L8 4.26a1.72 1.72 0 0 0-1.19-.5 1.65 1.65 0 0 0-1.18.5L4.26 5.6a1.67 1.67 0 0 0 0 2.4l.74.74a.38.38 0 0 1 0 .41.34.34 0 0 1-.29.22H3.68A1.68 1.68 0 0 0 2 11.05v1.89a1.69 1.69 0 0 0 1.68 1.69h1.09c.14 0 .24.11.3.26a.34.34 0 0 1 0 .37l-.81.74a1.72 1.72 0 0 0-.5 1.19 1.66 1.66 0 0 0 .5 1.19l1.34 1.36a1.67 1.67 0 0 0 2.37 0l.77-.74a.38.38 0 0 1 .41 0 .34.34 0 0 1 .22.29v1.09A1.68 1.68 0 0 0 11.05 22h1.89a1.69 1.69 0 0 0 1.69-1.68v-1.09c0-.14.11-.24.26-.3a.34.34 0 0 1 .37 0l.76.77a1.72 1.72 0 0 0 1.19.5 1.65 1.65 0 0 0 1.18-.5l1.34-1.34a1.67 1.67 0 0 0 0-2.37l-.73-.73a.34.34 0 0 1 0-.37.34.34 0 0 1 .29-.22h1.09A1.68 1.68 0 0 0 22 13v-1.94a1.69 1.69 0 0 0-1.68-1.69zM12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z" />
-              </g>
-            </g>
-          </svg>
-          Settings
-        </a>
-      </Link>
-    </div>
-  </nav>
+  <div className="pt-8">
+    <nav id="nav" className="w-56 relative">
+      <ul className="relative">
+        <li>
+          <Link href="/user/settings">
+            <a className="py-3 pl-1 w-full flex items-center focus:outline-none focus-visible:underline">
+              <svg
+                className="h-6 w-6 transition-all ease-out transition-medium text-gray-500"
+                viewBox="0 0 640 512"
+                fill="currentColor"
+              >
+                <g className="fa-group">
+                  <path
+                    fill="currentColor"
+                    d="M336 463.59V368a16 16 0 0 0-16-16h-64a16 16 0 0 0-16 16v95.71a16 16 0 0 1-15.92 16L112 480a16 16 0 0 1-16-16V300.06l184.39-151.85a12.19 12.19 0 0 1 15.3 0L480 300v164a16 16 0 0 1-16 16l-112-.31a16 16 0 0 1-16-16.1z"
+                    className="fa-secondary"
+                  ></path>
+                  <path
+                    fill="currentColor"
+                    d="M573.32 268.35l-25.5 31a12 12 0 0 1-16.9 1.65L295.69 107.21a12.19 12.19 0 0 0-15.3 0L45.17 301a12 12 0 0 1-16.89-1.65l-25.5-31a12 12 0 0 1 1.61-16.89L257.49 43a48 48 0 0 1 61 0L408 116.61V44a12 12 0 0 1 12-12h56a12 12 0 0 1 12 12v138.51l83.6 68.91a12 12 0 0 1 1.72 16.93z"
+                    className="fa-primary"
+                  ></path>
+                </g>
+              </svg>
+              <span className="ml-3 text-sm font-medium transition-all ease-out transition-medium text-gray-700">
+                Home
+              </span>
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/user/dashboard">
+            <a className="py-3 pl-1 w-full flex items-center focus:outline-none focus-visible:underline">
+              <svg
+                className="h-6 w-6 transition-all ease-out transition-medium text-gray-500"
+                viewBox="0 0 640 512"
+                fill="currentColor"
+              >
+                <g className="fa-group">
+                  <path
+                    fill="currentColor"
+                    d="M323.07 175.7L118.8 215.6a48.1 48.1 0 0 0-38.74 44.73 32 32 0 0 1 2.21 53.94l25.4 114.26A16 16 0 0 1 92 448H35.94a16 16 0 0 1-15.61-19.47l25.39-114.27a32 32 0 0 1 2.33-54 80.16 80.16 0 0 1 64.62-76.07l204.26-39.89a16 16 0 1 1 6.14 31.4z"
+                    className="fa-secondary"
+                  ></path>
+                  <path
+                    fill="currentColor"
+                    d="M622.33 198.8l-279 85.7a80 80 0 0 1-46.79 0L99.67 224a47.84 47.84 0 0 1 19.13-8.39l204.27-39.9a16 16 0 1 0-6.14-31.4l-204.26 39.88a79.87 79.87 0 0 0-47.57 29.18l-47.44-14.58c-23.54-7.23-23.54-38.36 0-45.59L296.6 67.5a79.92 79.92 0 0 1 46.8 0l278.93 85.7c23.55 7.24 23.55 38.36 0 45.6zM352.79 315.09a111.94 111.94 0 0 1-65.59 0l-145-44.55L128 384c0 35.35 86 64 192 64s192-28.65 192-64l-14.19-113.47z"
+                    className="fa-primary"
+                  ></path>
+                </g>
+              </svg>
+              <span className="ml-3 text-sm font-medium transition-all ease-out transition-medium text-gray-700">
+                Courses
+              </span>
+            </a>
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  </div>
 )

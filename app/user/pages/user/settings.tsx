@@ -4,9 +4,9 @@ import { UserNav } from "app/user/componenets/UserNav"
 
 const Settings: BlitzPage = () => {
   return (
-    <div className="container mx-auto justify-center items-center">
+    <div className="flex container mx-auto">
       <UserNav />
-      <div className="container mx-auto shadow rounded-lg p-8 bg-white">Settings</div>
+      <div className="w-full bg-white rounded-lg mx-auto my-8 px-10 py-8">Settings</div>
     </div>
   )
 }

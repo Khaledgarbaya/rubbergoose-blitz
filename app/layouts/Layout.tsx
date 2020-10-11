@@ -57,7 +57,7 @@ const Layout = ({ title, children }: LayoutProps) => (
           </Suspense>
         </div>
       </header>
-      <main className="container mx-auto p-8">{children}</main>
+      <main className="bg-gray-200 min-h-screen">{children}</main>
     </div>
   </>
 )
