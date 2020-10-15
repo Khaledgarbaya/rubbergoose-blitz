@@ -8,7 +8,7 @@ import getStripeSessionId from "app/user/mutations/getStripeSessionId"
 import { loadStripe } from "@stripe/stripe-js"
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe("pk_test_xkq3hrpmFAVCSokkPXaTSC0E00HHxAdBzU")
+const stripePromise = loadStripe(process.env.STRIPE_PKEY as string)
 
 const CourseDetail = () => {
   const courseSlug = useParam("courseSlug", "string")

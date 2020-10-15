@@ -23,7 +23,7 @@ export default async function getStripeSessionId({ courseId }: StripeSessionIdIn
       },
     ],
     mode: "payment",
-    success_url: "http://localhost:3000/user/shop/success",
+    success_url: "http://localhost:3000/user/shop/success?session_id={CHECKOUT_SESSION_ID}",
     cancel_url: "http://localhost:3000/user/shop/cancel",
   })
   return { sessionId: session.id }
