@@ -13,7 +13,7 @@ export default async function getCourse(
 ) {
   ctx.session!.authorize()
 
-  const course = await db.course.findOne({ where })
+  const course = await db.course.findOne({ where, include: { lessons: true } })
 
   if (!course) throw new NotFoundError()
 
