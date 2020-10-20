@@ -12,13 +12,7 @@ export default async function getStripeSessionId({ courseId }: StripeSessionIdIn
     payment_method_types: ["card"],
     line_items: [
       {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: course.title,
-          },
-          unit_amount: course.price,
-        },
+        price: "price_1HdByxEqfLummIZQcBLew169",
         quantity: 1,
       },
     ],

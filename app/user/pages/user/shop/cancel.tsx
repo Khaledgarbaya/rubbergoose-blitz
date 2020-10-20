@@ -1,6 +1,6 @@
 import { BlitzPage } from "blitz"
 import Layout from "app/layouts/Layout"
-import { UserNav } from "app/user/componenets/UserNav"
+import { UserNav } from "app/user/components/UserNav"
 
 const Cancel: BlitzPage = () => {
   return (

@@ -1,6 +1,6 @@
 import { BlitzPage, useParam, useQuery } from "blitz"
 import Layout from "app/layouts/Layout"
-import { UserNav } from "app/user/componenets/UserNav"
+import { UserNav } from "app/user/components/UserNav"
 import { Suspense } from "react"
 import getCourse from "app/admin/courses/queries/getCourse"
 import formatMoney from "app/user/utils/formatMoney"

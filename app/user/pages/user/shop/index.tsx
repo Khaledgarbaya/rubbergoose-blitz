@@ -1,9 +1,9 @@
 import { BlitzPage } from "blitz"
 import Layout from "app/layouts/Layout"
 import { Suspense } from "react"
-import { ShopCoursesList } from "app/user/componenets/ShopCoursesList"
-import { UserGreeting } from "app/user/componenets/UserGreeting"
-import { UserNav } from "app/user/componenets/UserNav"
+import { ShopCoursesList } from "app/user/components/ShopCoursesList"
+import { UserGreeting } from "app/user/components/UserGreeting"
+import { UserNav } from "app/user/components/UserNav"
 
 const ShopIndex: BlitzPage = () => {
   return (

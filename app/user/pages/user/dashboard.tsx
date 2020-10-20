@@ -1,9 +1,9 @@
 import { BlitzPage } from "blitz"
 import Layout from "app/layouts/Layout"
 import { Suspense } from "react"
-import { CoursesList } from "app/user/componenets/CourseList"
-import { UserGreeting } from "app/user/componenets/UserGreeting"
-import { UserNav } from "app/user/componenets/UserNav"
+import { CoursesList } from "app/user/components/CourseList"
+import { UserGreeting } from "app/user/components/UserGreeting"
+import { UserNav } from "app/user/components/UserNav"
 
 const Dashboard: BlitzPage = () => {
   return (

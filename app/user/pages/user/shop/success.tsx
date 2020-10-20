@@ -1,7 +1,7 @@
 import { BlitzPage, useRouterQuery, useQuery } from "blitz"
 import { Suspense } from "react"
 import Layout from "app/layouts/Layout"
-import { UserNav } from "app/user/componenets/UserNav"
+import { UserNav } from "app/user/components/UserNav"
 import getOrderDetail from "app/user/mutations/getOrderDetail"
 
 const OrderDetail = () => {

@@ -34,32 +34,34 @@ export function Form<FormValues extends Record<string, unknown>>({
       }}
       onSubmit={onSubmit}
       render={({ handleSubmit, submitting, submitError }) => (
-        <div className="w-full max-w-xs mx-auto">
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-            {...props}
-          >
-            {/* Form fields supplied as children are rendered here */}
-            {children}
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <form onSubmit={handleSubmit} {...props}>
+              {/* Form fields supplied as children are rendered here */}
+              {children}
 
-            {submitError && (
-              <div role="alert" style={{ color: "red" }}>
-                {submitError}
+              {submitError && (
+                <div role="alert" style={{ color: "red" }}>
+                  {submitError}
+                </div>
+              )}
+
+              <div className="mt-6">
+                <span className="block w-full rounded-md shadow-sm">
+                  <button
+                    className="text-white w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-purple-400 focus:outline-none focus:border-purple-700 focus:shadow-outline-purple active:bg-purple-700 transition duration-150 ease-in-out"
+                    type="submit"
+                    disabled={submitting}
+                  >
+                    {submitText}
+                  </button>
+                </span>
               </div>
-            )}
-
-            <button
-              className="bg-purple-500 hover:bg-purple-700 text-white py-2 px-4 rounded"
-              type="submit"
-              disabled={submitting}
-            >
-              {submitText}
-            </button>
-          </form>
-          <p className="text-center text-gray-500 text-xs">
-            &copy;2020 Rubber Goose. All rights reserved.
-          </p>
+            </form>
+            <p className="mt-5 text-center text-gray-500 text-xs">
+              &copy;2020 Rubber Goose. All rights reserved.
+            </p>
+          </div>
         </div>
       )}
     />

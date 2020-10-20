@@ -6,6 +6,9 @@ module.exports = {
       unstable_isAuthorized: unstable_simpleRolesIsAuthorized,
     }),
   ],
+  env: {
+    STRIPE_PKEY: process.env.STRIPE_PKEY,
+  },
   /* Uncomment this to customize the webpack config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Note: we provide webpack above so you should not `require` it

@@ -10,9 +10,13 @@ const SignupPage: BlitzPage = () => {
   const router = useRouter()
 
   return (
-    <div className="container mx-auto p-8">
-      <h1 className="text-3xl w-full max-w-xs mx-auto">Create an Account</h1>
-
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img className="mx-auto h-12 w-auto" src="rubber-goose.svg" alt="Workflow" />
+        <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+          Create an account
+        </h2>
+      </div>
       <Form<SignupInputType>
         submitText="Create Account"
         schema={SignupInput}
