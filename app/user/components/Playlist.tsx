@@ -1,6 +1,6 @@
 import { Link } from "blitz"
 
-export const Playlist = ({ course }) => {
+export const Playlist = ({ course, currentLesson }) => {
   const { lessons } = course
   return (
     <div>
@@ -11,7 +11,11 @@ export const Playlist = ({ course }) => {
               href="/user/courses/[courseSlug]/lessons/[lessonSlug]"
               as={`/user/courses/${course.slug}/lessons/${lesson.slug}`}
             >
-              <a className="px-4 py-4 sm:px-6 block hover:bg-gray-200 focus:outline-none focus:bg-gray-200 transition duration-200 ease-in-out">
+              <a
+                className={`${
+                  currentLesson === lesson.slug ? "border-l-2 border-purple-600 " : " "
+                }px-4 py-4 sm:px-6 block hover:bg-gray-200 focus:outline-none focus:bg-gray-200 transition duration-200 ease-in-out`}
+              >
                 {lesson.title}
               </a>
             </Link>

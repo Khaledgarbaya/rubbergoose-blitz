@@ -3,7 +3,7 @@
 
 datasource db {
   provider = ["sqlite", "postgres"]
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -47,7 +47,7 @@ model Course {
   description        String?
   lessons            Lesson[]
   price              Int       @default(0)
-  stripe_price_id    String    @unique
+  stripe_price_id    String?
 }
 
 model Lesson {

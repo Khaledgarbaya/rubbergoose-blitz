@@ -1,8 +1,6 @@
 import { buffer } from "micro"
 import Cors from "micro-cors"
-
-import { NextApiRequest, NextApiResponse } from "next"
-//import db from "db"
+import db from "db"
 // Set your secret key. Remember to switch to your live secret key in production!
 // See your keys here: https://dashboard.stripe.com/account/apikeys
 import Stripe from "stripe"
@@ -12,7 +10,7 @@ const stripe = new Stripe(process.env.STRIPE_SKEY!, {
 })
 
 // Find your endpoint's secret in your Dashboard's webhook settings
-const webhookSecret = process.env.WEBHOOK_SECRET!
+const webhookSecret: string = process.env.WEBHOOK_SECRET!
 
 // Stripe requires the raw body to construct the event.
 export const config = {
@@ -20,41 +18,51 @@ export const config = {
     bodyParser: false,
   },
 }
-
 const cors = Cors({
   allowMethods: ["POST", "HEAD"],
 })
-
 const fulfillOrder = async (session) => {
   // TODO: fill me in
-  // const user = await db.user.findOne({where:{email: session.customer.email}})
-  // if(!user) return
-  // const courseMembership = await db.courseMembership.create({data:{
-  //   user:user,
-  //   course: course
-  // }})
+  const detailedSession: Stripe.Checkout.Session = await stripe.checkout.sessions.retrieve(
+    session.id,
+    {
+      expand: ["payment_intent", "line_items"],
+    }
+  )
+  console.log(`detailedSession: ${JSON.stringify(detailedSession, null, 2)}`)
+  const course = await db.course.findOne({
+    where: { stripe_price_id: detailedSession.line_items.data[0].price.id },
+  })
+
+  const user = await db.user.findOne({ where: { email: session.customer_email } })
+  if (!user) return
+  await db.courseMembership.create({
+    data: {
+      user: { connect: { id: user.id } },
+      course: { connect: { id: course.id } },
+    },
+  })
+  console.log(`✅ ----------------------------------`)
   console.log("Fulfilling order", JSON.stringify(session))
+  console.log(`✅ ----------------------------------`)
 }
 const createOrder = (session) => {
   // TODO: fill me in
+  console.log(`✅ ----------------------------------`)
   console.log("Creating order", session)
+  console.log(`✅  ----------------------------------`)
 }
 
 const emailCustomerAboutFailedPayment = (session) => {
   // TODO: fill me in
+  console.log(`✅ ----------------------------------`)
   console.log("Emailing customer", session)
+  console.log(`✅ ----------------------------------`)
 }
-const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const webhookHandler = async (req, res) => {
   if (req.method === "POST") {
     const buf = await buffer(req)
-
     const sig = req.headers["stripe-signature"]!
-
-    console.log(`❌ ----------------------------------`)
-    console.log(`❌ req buffer: ${buf.toString()}`)
-    console.log(`❌ req sig: ${sig}`)
-    console.log(`❌ ----------------------------------`)
-
     let event: Stripe.Event
 
     try {
@@ -68,18 +76,41 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Successfully constructed event.
     console.log("✅ Success:", event.id)
-    // Cast event data to Stripe object.
-    if (event.type === "payment_intent.succeeded") {
-      const paymentIntent = event.data.object as Stripe.PaymentIntent
-      console.log(`💰 PaymentIntent status: ${paymentIntent.status}`)
-    } else if (event.type === "payment_intent.payment_failed") {
-      const paymentIntent = event.data.object as Stripe.PaymentIntent
-      console.log(`❌ Payment failed: ${paymentIntent.last_payment_error?.message}`)
-    } else if (event.type === "charge.succeeded") {
-      const charge = event.data.object as Stripe.Charge
-      console.log(`💵 Charge id: ${charge.id}`)
-    } else {
-      console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`)
+    switch (event.type) {
+      case "checkout.session.completed": {
+        const session = event.data.object as Stripe.Checkout.Session
+        // Save an order in your database, marked as 'awaiting payment'
+        createOrder(session)
+
+        // Check if the order is paid (e.g., from a card payment)
+        //
+        // A delayed notification payment will have an `unpaid` status, as
+        // you're still waiting for funds to be transferred from the customer's
+        // account.
+        if (session.payment_status === "paid") {
+          fulfillOrder(session)
+        }
+
+        break
+      }
+
+      case "checkout.session.async_payment_succeeded": {
+        const session = event.data.object
+
+        // Fulfill the purchase...
+        fulfillOrder(session)
+
+        break
+      }
+
+      case "checkout.session.async_payment_failed": {
+        const session = event.data.object
+
+        // Send an email to the customer asking them to retry their order
+        emailCustomerAboutFailedPayment(session)
+
+        break
+      }
     }
     // Return a response to acknowledge receipt of the event.
     res.json({ received: true })
