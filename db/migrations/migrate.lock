@@ -5,3 +5,4 @@
 20201015091931-add-price-to-course
 20201020144108-add_stripe-price_id_to_course
 20201020164937-make-stripe-price-id-uniq
+20201020220254-add-default

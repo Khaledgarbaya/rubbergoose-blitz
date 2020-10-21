@@ -14,7 +14,7 @@ export default async function getStripeSessionId(
   if (!course) return null
   const user = await db.user.findOne({
     where: { id: ctx.session!.userId },
-    select: { email: true },
+    select: { email: true, stripe_customer_id: true },
   })
 
   const session = await stripe.checkout.sessions.create({
@@ -31,7 +31,7 @@ export default async function getStripeSessionId(
         courseId: course.id,
       },
     },
-    customer_email: user?.email,
+    customer: user?.stripe_customer_id,
     mode: "payment",
     success_url: "http://localhost:3000/user/shop/success?session_id={CHECKOUT_SESSION_ID}",
     cancel_url: "http://localhost:3000/user/shop/cancel",
