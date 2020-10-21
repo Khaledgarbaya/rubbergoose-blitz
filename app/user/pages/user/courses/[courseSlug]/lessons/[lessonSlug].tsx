@@ -15,7 +15,7 @@ const CourseDetail = () => {
   return (
     <div className="h-full">
       <h1 className="text-4xl sm:text-6xl">{course.title}</h1>
-      <div className="flex flex-wrap h-full">
+      <div className="flex flex-wrap">
         <div className="w-full xl:w-3/4 p-5">
           <VideoPlayer source={currentLesson.videoUrl} />
         </div>
