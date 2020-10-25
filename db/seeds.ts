@@ -16,6 +16,7 @@ const seed = async () => {
       title: `migrate a create-react-app project to Gatsby`,
       description: `Learn how to migrate a create-react-app project to Gatsby!`,
       slug: `migrate-a-reactjs-project-to-gatsby`,
+      stripe_price_id: `price_1HdYrMEqfLummIZQ2DGCRcgG`,
     },
   })
 
@@ -24,6 +25,7 @@ const seed = async () => {
       title: `Getting started with Blitzjs`,
       description: `Learn how to get started with blitzjs`,
       slug: `getting-started-with-blitz`,
+      stripe_price_id: `price_1HeMNZEqfLummIZQmSgSh0X0`,
     },
     select: { id: true },
   })

@@ -22,20 +22,20 @@ const cors = Cors({
   allowMethods: ["POST", "HEAD"],
 })
 const fulfillOrder = async (session) => {
-  // TODO: fill me in
   const detailedSession: Stripe.Checkout.Session = await stripe.checkout.sessions.retrieve(
     session.id,
     {
       expand: ["payment_intent", "line_items"],
     }
   )
+  if (!detailedSession) return
   console.log(`detailedSession: ${JSON.stringify(detailedSession, null, 2)}`)
   const course = await db.course.findOne({
-    where: { stripe_price_id: detailedSession.line_items.data[0].price.id },
+    where: { stripe_price_id: detailedSession.line_items!.data[0].price.id },
   })
 
   const user = await db.user.findOne({ where: { email: session.customer_email } })
-  if (!user) return
+  if (!user || !course) return
   await db.courseMembership.create({
     data: {
       user: { connect: { id: user.id } },
