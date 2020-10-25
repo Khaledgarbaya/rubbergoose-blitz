@@ -3,7 +3,7 @@
 
 datasource db {
   provider = ["sqlite", "postgres"]
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -13,26 +13,26 @@ generator client {
 // --------------------------------------
 
 model User {
-  id                String    @id @default(uuid())
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-  name              String?
-  email             String    @unique
-  hashedPassword    String?
-  role              String    @default("user")
-  sessions          Session[]
-  courseMemberships CourseMembership[]
+  id                 Int       @default(autoincrement()) @id
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  name               String?
+  email              String    @unique
+  hashedPassword     String?
+  role               String    @default("user")
   stripe_customer_id String    @default("cus_test")
+  sessions           Session[]
+  courseMemberships  CourseMembership[]
 }
 
 model Session {
-  id                String    @id @default(uuid())
+  id                 Int       @default(autoincrement()) @id
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   expiresAt          DateTime?
   handle             String    @unique
   user               User?     @relation(fields: [userId], references: [id])
-  userId             String?
+  userId             Int?
   hashedSessionToken String?
   antiCSRFToken      String?
   publicData         String?
@@ -40,7 +40,7 @@ model Session {
 }
 
 model Course {
-  id                  String    @id @default(uuid())
+  id                 Int       @default(autoincrement()) @id
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   title              String
@@ -52,23 +52,23 @@ model Course {
 }
 
 model Lesson {
-  id                String    @id @default(uuid())
+  id                 Int       @default(autoincrement()) @id
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   title              String
   description        String?
   videoUrl           String?
   course             Course?   @relation(fields: [courseId], references: [id])
-  courseId           String?
+  courseId           Int?
   slug               String    @unique
 }
 
 model CourseMembership {
-  id                String    @id @default(uuid())
+  id                 Int       @default(autoincrement()) @id
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   user               User?     @relation(fields: [userId], references: [id])
-  userId             String?
+  userId             Int?
   course             Course?   @relation(fields: [courseId], references: [id])
-  courseId           String?
+  courseId           Int?
 }
