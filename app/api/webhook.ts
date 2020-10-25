@@ -34,7 +34,7 @@ const fulfillOrder = async (session) => {
     where: { stripe_price_id: detailedSession.line_items!.data[0].price.id },
   })
 
-  const user = await db.user.findOne({ where: { email: session.customer_email } })
+  const user = await db.user.findOne({ where: { stripe_customer_id: session.customer } })
   if (!user || !course) return
   await db.courseMembership.create({
     data: {

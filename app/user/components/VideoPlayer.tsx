@@ -2,7 +2,6 @@ type VideoPlayerProps = {
   source: string
 }
 export const VideoPlayer = ({ source }: VideoPlayerProps) => {
-  console.log(source)
   return (
     <div>
       <iframe
